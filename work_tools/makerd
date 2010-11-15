@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm -rf tmp/$1
+mkdir -p tmp/$1
+cd tmp/$1
+find . -print | cpio -o --file=../initrd_new --format=newc
+cd ../
+gzip -c9 initrd_new > ./$1.img

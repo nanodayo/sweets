@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mkdir -p tmp/$1
+gzip -cd $1 >tmp/$1.initrd
+cd tmp/$1
+cpio -i --file=../$1.initrd
