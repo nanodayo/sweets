@@ -1,0 +1,116 @@
+These documents are Japanese only.
+
+SoftWare Evaluation Environment building and operation ToolS
+
+■conifg_generator/
+
+サーバの設定ファイルジェネレータをおいているディレクトリです。
+
+・dhcpd_conf_gen.pl
+
+dhcpdの設定ファイルを生成します。
+固定IPアドレス用の設定にも対応していて
+IPアドレスとMacアドレスのペアを定義したファイルを読み込ませることで
+その組み合わせで割り当てる用に設定します。
+
+・l2tpd_conf_gen.pl
+
+rp-l2tp用の設定ファイルを作成します。
+rp-l2tpを、L2TPクライアントとして使用する場合の設定を想定しています。
+
+■exss/
+
+実験の実行を支援するためのスクリプト群です。
+
+・tcp_writer.pl
+
+TCPで単発のメッセージを送ります。
+プロトコルのテスト等に使用します。
+
+ perl tcp_writer.pl <option> <value>...
+
+-m message
+-h target host
+-p target port
+-help help
+
+・time_inserter.pl
+
+ログに時刻を挿入するためのツールです。
+標準出力の結果を元にしているので
+正確な時間とはズレが出るかもしれません。
+
+command | time_inserter.pl > log
+
+のように実行します。
+
+■federation/
+
+PLC同士のFederationのためのスクリプト群です。
+
+・pl_genkey.sh
+
+MyPLC同士のFederationの際に必要になるファイルを作成します。
+作成したファイルはメールなどの他の手段で交換する必要があります。
+
+・pl_peeradder.py
+
+pl_genkey.shで作成したファイルを用いて、Federationの設定を行います。
+
+■pl_autobuild/
+
+大規模なLocal PlanetLabを構築するためのツールです。
+SpringOSのサービスが動いている前提です。
+
+・plc_dbentryadder.py
+
+SpringOS環境で構築する場合に必要になるエントリを作成します。
+具体的には、インターフェイスの実験用/管理用といった項目です。
+MyPLCのインストール・設定の後に一回実行することを想定しています。
+
+・pl_autobuild.pl
+
+pl_autobuild.pl <台数>
+のように実行すると、その台数だけのPLノードを構築します。
+現状、PLCホスト上で実行することを想定しています。
+
+SpringOS環境での使用を想定しており、スクリプトの先頭で定義している
+ERM等を書き換えて指定する必要があります。
+
+また、ノードの追加にも対応しています。
+./tmpディレクトリに、使用したvlanやDHCPのIPレンジを保存しており、
+2回目以降の実行時には、それらのファイルを見て
+ノードを追加する形で構築します。
+
+・pl_nodeadder.py
+
+PLCAPIを操作し、PLCのデータベースにノードを登録するスクリプト。
+
+・pl_expifadder.py
+
+PLCAPIを操作し、PLCのデータベースに
+ノードのネットワークインターフェイスを登録するスクリプト。
+SpringOS環境を想定しており、実験用にするか管理用にするかといった指定も可能である。
+
+・plc_conf_to_img.sh
+・pl_sliceadder.py
+・pl_slicerenewer.py
+・pl_siteadder.py
+・plc_getimg.sh
+
+・plc_dnsrestarter.sh
+
+PLCホストが提供しているDNSサービスを再起動する。
+
+■stargate/
+
+・stargate_master
+・stargate_slave
+・stargate_register
+
+■work_tools/
+
+・openrd
+・makerd
+・ip_to_pxeconf.pl
+・mac_to_linklocal.pl
