@@ -8,10 +8,23 @@ SoftWare Evaluation Environment building and operation ToolS
 
 ・dhcpd_conf_gen.pl
 
+perl dhcpd_conf_gen.pl <option> <value>...
+
+-n network address
+-f node list file
+-m netmask
+-r address range
+-g default gateway
+-d dns server
+-s start of IPaddress range
+-e end of IPadress range
+-h help
+
 dhcpdの設定ファイルを生成します。
 固定IPアドレス用の設定にも対応していて
 IPアドレスとMacアドレスのペアを定義したファイルを読み込ませることで
 その組み合わせで割り当てる用に設定します。
+特に指定しなければ192.168.0.0/24の設定で作成します。
 
 ・l2tpd_conf_gen.pl
 
