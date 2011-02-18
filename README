@@ -2,11 +2,11 @@ These documents are Japanese only.
 
 SoftWare Evaluation Environment building and operation ToolS
 
-��conifg_generator/
+■conifg_generator/
 
-�T�[�o�̐ݒ�t�@�C���W�F�l���[�^�������Ă���f�B���N�g���ł��B
+サーバの設定ファイルジェネレータをおいているディレクトリです。
 
-�Edhcpd_conf_gen.pl
+・dhcpd_conf_gen.pl
 
 perl dhcpd_conf_gen.pl <option> <value>...
 
@@ -20,25 +20,25 @@ perl dhcpd_conf_gen.pl <option> <value>...
 -e end of IPadress range
 -h help
 
-dhcpd�̐ݒ�t�@�C���𐶐����܂��B
-�Œ�IP�A�h���X�p�̐ݒ�ɂ��Ή����Ă���
-IP�A�h���X��Mac�A�h���X�̃y�A���`�����t�@�C����ǂݍ��܂��邱�Ƃ�
-���̑g�ݍ��킹�Ŋ��蓖�Ă�p�ɐݒ肵�܂��B
-���Ɏw�肵�Ȃ����192.168.0.0/24�̐ݒ�ō쐬���܂��B
+dhcpdの設定ファイルを生成します。
+固定IPアドレス用の設定にも対応していて
+IPアドレスとMacアドレスのペアを定義したファイルを読み込ませることで
+その組み合わせで割り当てる用に設定します。
+特に指定しなければ192.168.0.0/24の設定で作成します。
 
-�El2tpd_conf_gen.pl
+・l2tpd_conf_gen.pl
 
-rp-l2tp�p�̐ݒ�t�@�C�����쐬���܂��B
-rp-l2tp���AL2TP�N���C�A���g�Ƃ��Ďg�p����ꍇ�̐ݒ��z�肵�Ă��܂��B
+rp-l2tp用の設定ファイルを作成します。
+rp-l2tpを、L2TPクライアントとして使用する場合の設定を想定しています。
 
-��exss/
+■exss/
 
-�����̎��s���x�����邽�߂̃X�N���v�g�Q�ł��B
+実験の実行を支援するためのスクリプト群です。
 
-�Etcp_writer.pl
+・tcp_writer.pl
 
-TCP�ŒP���̃��b�Z�[�W�𑗂�܂��B
-�v���g�R���̃e�X�g���Ɏg�p���܂��B
+TCPで単発のメッセージを送ります。
+プロトコルのテスト等に使用します。
 
  perl tcp_writer.pl <option> <value>...
 
@@ -47,83 +47,83 @@ TCP�ŒP���̃��b�Z�[�W�𑗂�܂��B
 -p target port
 -help help
 
-�Etime_inserter.pl
+・time_inserter.pl
 
-���O�Ɏ�����}�����邽�߂̃c�[���ł��B
-�W���o�͂̌��ʂ����ɂ��Ă���̂�
-���m�Ȏ��ԂƂ̓Y�����o�邩������܂���B
+ログに時刻を挿入するためのツールです。
+標準出力の結果を元にしているので
+正確な時間とはズレが出るかもしれません。
 
 command | time_inserter.pl > log
 
-�̂悤�Ɏ��s���܂��B
+のように実行します。
 
-��federation/
+■federation/
 
-PLC���m��Federation�̂��߂̃X�N���v�g�Q�ł��B
+PLC同士のFederationのためのスクリプト群です。
 
-�Epl_genkey.sh
+・pl_genkey.sh
 
-MyPLC���m��Federation�̍ۂɕK�v�ɂȂ�t�@�C�����쐬���܂��B
-�쐬�����t�@�C���̓��[���Ȃǂ̑��̎�i�Ō�������K�v������܂��B
+MyPLC同士のFederationの際に必要になるファイルを作成します。
+作成したファイルはメールなどの他の手段で交換する必要があります。
 
-�Epl_peeradder.py
+・pl_peeradder.py
 
-pl_genkey.sh�ō쐬�����t�@�C����p���āAFederation�̐ݒ���s���܂��B
+pl_genkey.shで作成したファイルを用いて、Federationの設定を行います。
 
-��pl_autobuild/
+■pl_autobuild/
 
-��K�͂�Local PlanetLab���\�z���邽�߂̃c�[���ł��B
-SpringOS�̃T�[�r�X�������Ă���O��ł��B
+大規模なLocal PlanetLabを構築するためのツールです。
+SpringOSのサービスが動いている前提です。
 
-�Eplc_dbentryadder.py
+・plc_dbentryadder.py
 
-SpringOS���ō\�z����ꍇ�ɕK�v�ɂȂ�G���g�����쐬���܂��B
-��̓I�ɂ́A�C���^�[�t�F�C�X�̎����p/�Ǘ��p�Ƃ��������ڂł��B
-MyPLC�̃C���X�g�[���E�ݒ�̌�Ɉ����s���邱�Ƃ�z�肵�Ă��܂��B
+SpringOS環境で構築する場合に必要になるエントリを作成します。
+具体的には、インターフェイスの実験用/管理用といった項目です。
+MyPLCのインストール・設定の後に一回実行することを想定しています。
 
-�Epl_autobuild.pl
+・pl_autobuild.pl
 
-pl_autobuild.pl <�䐔>
-�̂悤�Ɏ��s����ƁA���̑䐔������PL�m�[�h���\�z���܂��B
-����APLC�z�X�g��Ŏ��s���邱�Ƃ�z�肵�Ă��܂��B
+pl_autobuild.pl <台数>
+のように実行すると、その台数だけのPLノードを構築します。
+現状、PLCホスト上で実行することを想定しています。
 
-SpringOS���ł̎g�p��z�肵�Ă���A�X�N���v�g�̐擪�Œ�`���Ă���
-ERM�������������Ďw�肷��K�v������܂��B
+SpringOS環境での使用を想定しており、スクリプトの先頭で定義している
+ERM等を書き換えて指定する必要があります。
 
-�܂��A�m�[�h�̒ǉ��ɂ��Ή����Ă��܂��B
-./tmp�f�B���N�g���ɁA�g�p����vlan��DHCP��IP�����W��ۑ����Ă���A
-2��ڈȍ~�̎��s���ɂ́A�����̃t�@�C��������
-�m�[�h��ǉ�����`�ō\�z���܂��B
+また、ノードの追加にも対応しています。
+./tmpディレクトリに、使用したvlanやDHCPのIPレンジを保存しており、
+2回目以降の実行時には、それらのファイルを見て
+ノードを追加する形で構築します。
 
-�Epl_nodeadder.py
+・pl_nodeadder.py
 
-PLCAPI�𑀍삵�APLC�̃f�[�^�x�[�X�Ƀm�[�h��o�^����X�N���v�g�B
+PLCAPIを操作し、PLCのデータベースにノードを登録するスクリプト。
 
-�Epl_expifadder.py
+・pl_expifadder.py
 
-PLCAPI�𑀍삵�APLC�̃f�[�^�x�[�X��
-�m�[�h�̃l�b�g���[�N�C���^�[�t�F�C�X��o�^����X�N���v�g�B
-SpringOS����z�肵�Ă���A�����p�ɂ��邩�Ǘ��p�ɂ��邩�Ƃ������w����\�ł���B
+PLCAPIを操作し、PLCのデータベースに
+ノードのネットワークインターフェイスを登録するスクリプト。
+SpringOS環境を想定しており、実験用にするか管理用にするかといった指定も可能である。
 
-�Eplc_conf_to_img.sh
-�Epl_sliceadder.py
-�Epl_slicerenewer.py
-�Epl_siteadder.py
-�Eplc_getimg.sh
+・plc_conf_to_img.sh
+・pl_sliceadder.py
+・pl_slicerenewer.py
+・pl_siteadder.py
+・plc_getimg.sh
 
-�Eplc_dnsrestarter.sh
+・plc_dnsrestarter.sh
 
-PLC�z�X�g���񋟂��Ă���DNS�T�[�r�X���ċN������B
+PLCホストが提供しているDNSサービスを再起動する。
 
-��stargate/
+■stargate/
 
-�Estargate_master
-�Estargate_slave
-�Estargate_register
+・stargate_master
+・stargate_slave
+・stargate_register
 
-��work_tools/
+■work_tools/
 
-�Eopenrd
-�Emakerd
-�Eip_to_pxeconf.pl
-�Emac_to_linklocal.pl
+・openrd
+・makerd
+・ip_to_pxeconf.pl
+・mac_to_linklocal.pl
